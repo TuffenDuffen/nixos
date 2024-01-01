@@ -21,7 +21,7 @@
         hp-omen = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
-            .hosts/hp-omen/configuration.nix
+            ./hosts/hp-omen/configuration.nix
             inputs.home-manager.nixosModules.default
           ];
         };
