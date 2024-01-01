@@ -161,6 +161,7 @@
     pciutils
     gamemode
     git
+    git-credential-oauth
   ];
   
   # Enable flakes
