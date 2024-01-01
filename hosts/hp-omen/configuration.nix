@@ -137,7 +137,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs }
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "tuffend" = import ./home.nix
     }
