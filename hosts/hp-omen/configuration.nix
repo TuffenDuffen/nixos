@@ -139,9 +139,9 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "tuffend" = import ./home.nix
-    }
-  }
+      "tuffend" = import ./home.nix;
+    };
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -160,6 +160,7 @@
   #  wget
     pciutils
     gamemode
+    git
   ];
   
   # Enable flakes
