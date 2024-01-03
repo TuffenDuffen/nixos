@@ -120,6 +120,9 @@
 	# accessible via `nvidia-settings`.
     nvidiaSettings = true;
   };
+  
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -129,28 +132,14 @@
     isNormalUser = true;
     description = "Tuffen Duffen";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      thunderbird
-      discord
-    ];
   };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
     users = {
       "tuffend" = import ./home.nix;
     };
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  
-  # Enable Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   # List packages installed in system profile. To search, run:
@@ -158,11 +147,19 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    pciutils
+    neovim
     gamemode
+    pciutils
     git
     git-credential-oauth
   ];
+  
+  # Enable Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
   
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
