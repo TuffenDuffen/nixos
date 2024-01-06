@@ -14,7 +14,13 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
-
+  
+  imports = [
+    ../../modules/home-manager/helix.nix
+    ../../modules/home-manager/nushell.nix
+    ../../modules/home-manager/lazygit.nix
+  ];
+ 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [

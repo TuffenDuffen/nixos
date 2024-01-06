@@ -23,7 +23,7 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "hp-omen"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -132,6 +132,7 @@
     isNormalUser = true;
     description = "Tuffen Duffen";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.nushell;
   };
 
   home-manager = {
@@ -147,11 +148,16 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    neovim
+    nushell
+    helix
     gamemode
     pciutils
     git
     git-credential-oauth
+  ];
+
+  environment.shells = [
+    pkgs.nushell
   ];
   
   # Enable Steam
