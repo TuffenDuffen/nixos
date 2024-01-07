@@ -19,6 +19,7 @@
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/nushell.nix
     ../../modules/home-manager/lazygit.nix
+    ../../modules/home-manager/zellij.nix
   ];
  
   # The home.packages option allows you to install Nix packages into your
@@ -78,7 +79,7 @@
   #  /etc/profiles/per-user/tuffend/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
   };
 
   # Let Home Manager install and manage itself.

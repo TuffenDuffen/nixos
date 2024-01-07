@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 {
-  programs.lazygit = {
+  programs.zellij = {
     enable = true;
   };
 }

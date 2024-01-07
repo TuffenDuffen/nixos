@@ -62,6 +62,7 @@
   services.xserver = {
     layout = "se";
     xkbVariant = "";
+    xkbOptions = "grp:alt_space_toggle, ctrl:swapcaps";
   };
 
   # Configure console keymap
@@ -117,8 +118,11 @@
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+	  # accessible via `nvidia-settings`.
     nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   
   # Allow unfree packages
@@ -154,6 +158,7 @@
     pciutils
     git
     git-credential-oauth
+    xclip
   ];
 
   environment.shells = [
