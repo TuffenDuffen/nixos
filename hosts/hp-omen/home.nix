@@ -21,6 +21,27 @@
     ../../modules/home-manager/lazygit.nix
     ../../modules/home-manager/zellij.nix
   ];
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      clock-show-weekday = true;
+    };
+
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = true;
+    };
+
+    "system/locale" = {
+      region = "sv_SE.UTF-8";
+    };
+
+    "org/gnome/settings-daemon/plugins/power" = {
+      power-button-action = "interactive";
+      sleep-inactive-ac-type = "nothing";
+    };
+  };
  
   # The home.packages option allows you to install Nix packages into your
   # environment.
