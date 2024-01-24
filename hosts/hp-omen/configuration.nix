@@ -154,6 +154,7 @@
   #  wget
     nushell
     helix
+    nil
     gamemode
     pciutils
     git
