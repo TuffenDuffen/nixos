@@ -59,10 +59,10 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "se";
-    xkbVariant = "";
-    xkbOptions = "grp:alt_space_toggle, ctrl:swapcaps";
+    variant = "";
+    options = "grp:alt_space_toggle, ctrl:swapcaps";
   };
 
   # Configure console keymap
