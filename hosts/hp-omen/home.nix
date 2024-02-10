@@ -20,6 +20,7 @@
     ../../modules/home-manager/nushell.nix
     ../../modules/home-manager/lazygit.nix
     ../../modules/home-manager/zellij.nix
+    ../../modules/home-manager/hyprland.nix
   ];
 
   dconf.settings = {
@@ -54,6 +55,8 @@
     pkgs.thunderbird
     pkgs.discord
     pkgs.gamemode
+    pkgs.prismlauncher
+    pkgs.vial
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

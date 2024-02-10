@@ -58,6 +58,18 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Enable hyprland
+  programs.hyprland = { 
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  xdg.portal.enable = true;
+  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "se";
@@ -122,7 +134,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   
   # Allow unfree packages
@@ -150,8 +162,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
     nushell
     helix
     nil
@@ -160,8 +170,26 @@
     git
     git-credential-oauth
     xclip
+
+    # Hyprland
+    (pkgs.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      })
+    )
+    mako
+    libnotify
+    swww
+    kitty
+    wofi
   ];
 
+  # Install vial
+  services.udev.packages = with pkgs; [
+    vial
+    via
+  ];
+
+  # Enable nushell
   environment.shells = [
     pkgs.nushell
   ];
