@@ -10,4 +10,9 @@
       ];
     };
   };
-}
+  imports = [
+    ./mako.nix
+    ./kitty.nix
+    ./wofi.nix
+  ];
+ }
