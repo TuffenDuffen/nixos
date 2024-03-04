@@ -25,6 +25,7 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      gtk-theme = "adwaita-dark";
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
       clock-show-weekday = true;

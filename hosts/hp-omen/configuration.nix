@@ -66,6 +66,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    
   };
 
   xdg.portal.enable = true;
@@ -170,17 +171,6 @@
     git
     git-credential-oauth
     xclip
-
-    # Hyprland
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      })
-    )
-    mako
-    libnotify
-    swww
-    kitty
-    wofi
   ];
 
   # Install vial
