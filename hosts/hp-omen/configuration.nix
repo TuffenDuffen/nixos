@@ -166,6 +166,7 @@
     nushell
     helix
     nil
+    alejandra
     gamemode
     pciutils
     git
