@@ -18,6 +18,7 @@
   imports = [
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/nushell.nix
+    ../../modules/home-manager/dvsm.nix
     ../../modules/home-manager/lazygit.nix
     ../../modules/home-manager/zellij.nix
     ../../modules/home-manager/hyprland.nix
