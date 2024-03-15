@@ -1,5 +1,5 @@
 { lib, config, pkgs, ... }:
 
 {
-  programs.nushell.extraConfig = "use ../nushell/dvsm.nu";
+  programs.nushell.extraConfig = "use dvsm.nu";
 }

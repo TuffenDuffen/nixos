@@ -38,6 +38,28 @@ const flakes = {
     };
 }
 '
+  gleam: '{
+  description = "dvsm Gleam flake"
+  inputs = {
+    nixpkgs.url = "github:Nix́OS/nixpkgs/nixos-unstable"
+  };
+
+  outputs = { self, nixpkgs }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          gleam
+          erlang
+        ];
+        inherit system name;
+      }
+    }
+}
+'
 }
 
 # Enter a devspace

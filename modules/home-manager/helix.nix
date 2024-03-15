@@ -21,4 +21,7 @@
       args = ["--lsp"]
     '';
   };
+  programs.nushell.environmentVariables = {
+    EDITOR = "hx";
+  };
 }
