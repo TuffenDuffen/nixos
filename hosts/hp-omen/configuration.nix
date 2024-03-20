@@ -172,6 +172,7 @@
     git
     git-credential-oauth
     xclip
+    nerdfonts
   ];
 
   # Install vial

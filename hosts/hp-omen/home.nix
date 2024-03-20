@@ -25,6 +25,7 @@
     ../../modules/home-manager/lazygit.nix
     ../../modules/home-manager/zellij.nix
     ../../modules/home-manager/hyprland.nix
+    ../../modules/home-manager/nixvim.nix
   ];
 
   dconf.settings = {
