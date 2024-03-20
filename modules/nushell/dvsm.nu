@@ -39,14 +39,16 @@ const flakes = {
 }
 '
   gleam: '{
-  description = "dvsm Gleam flake"
+  description = "dvsm Gleam flake";
+  
   inputs = {
-    nixpkgs.url = "github:Nix́OS/nixpkgs/nixos-unstable"
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
+      name = "dvsm";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
@@ -54,10 +56,11 @@ const flakes = {
         buildInputs = with pkgs; [
           gleam
           erlang
+          rebar3
         ];
         inherit system name;
-      }
-    }
+      };
+    };
 }
 '
 }
