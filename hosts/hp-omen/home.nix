@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "tuffend";
@@ -14,7 +17,7 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
-  
+
   imports = [
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/nushell.nix
@@ -44,15 +47,19 @@
       power-button-action = "interactive";
       sleep-inactive-ac-type = "nothing";
     };
+
+    "org/gnome/desktop/input-sources" = {
+      sources = [(lib.hm.gvariant.mkTuple ["xkb" "se"]) (lib.hm.gvariant.mkTuple ["xkb" "us"])];
+    };
   };
- 
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-    
+
     pkgs.firefox
     pkgs.thunderbird
     pkgs.discord
@@ -104,7 +111,7 @@
   #
   #  /etc/profiles/per-user/tuffend/etc/profile.d/hm-session-vars.sh
   #
-  
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
