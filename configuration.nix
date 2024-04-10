@@ -164,15 +164,28 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     nushell
-    helix
-    nil
-    alejandra
-    gamemode
     pciutils
     git
     git-credential-oauth
+
+    # neovim
+    neovim
     xclip
     nerdfonts
+    make
+    gcc
+    make
+    unzip
+    ripgrep
+
+    # languages
+    go
+    cargo
+    rustc
+    rustfmt
+    nil
+    alejandra
+    gleam
   ];
 
   # Install vial
@@ -185,14 +198,7 @@
   environment.shells = [
     pkgs.nushell
   ];
-  
-  # Enable Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-  
+    
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

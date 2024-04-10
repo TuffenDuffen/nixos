@@ -18,16 +18,6 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  imports = [
-    ../../modules/home-manager/helix.nix
-    ../../modules/home-manager/nushell.nix
-    ../../modules/home-manager/dvsm.nix
-    ../../modules/home-manager/lazygit.nix
-    ../../modules/home-manager/zellij.nix
-    ../../modules/home-manager/hyprland.nix
-    ../../modules/home-manager/nvim.nix
-  ];
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       gtk-theme = "adwaita-dark";
@@ -82,36 +72,70 @@
     # '')
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  programs.helix = {
+    enable = true;
+    languages = builtins.fromTOML ''
+      [[language]]
+      name = "nu"
+      file-types = ["nu"]
+      shebangs = ["nu"]
+      comment-token = "#"
+      indent = { tab-width = 2, unit = "  " }
+      language-servers = ["nu-lsp"]
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+      [[language]]
+      name = "nix"
+      formatter = { command = "alejandra" }
+
+      [language-server.nu-lsp]
+      command = "nu"
+      args = ["--lsp"]
+    '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/tuffend/etc/profile.d/hm-session-vars.sh
-  #
+  programs.nushell.environmentVariables = {
+    EDITOR = "hx";
+  };
+
+  programs.nushell = {
+    enable = true;
+    extraEnv = ''
+    $env.NU_LIB_DIRS = [
+      $"($nu.default-config-dir)/modules"
+    ]
+    '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
+  home.file."nu-modules" = {
+    source = ./nushell;
+    recursive = true;
+    target = "${config.xdg.configHome}/nushell/modules/";
+  };
+
+  programs.nushell.extraConfig = "use dvsm.nu";
+
+  programs.lazygit = {
+    enable = true;
+  };
+
+  programs.zellij = {
+    enable = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+  };
+
+  home.file."nvim-config" = {
+    source = ./nvim;
+    recursive = true;
+    target = "${config.xdg.configHome}/nvim";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
