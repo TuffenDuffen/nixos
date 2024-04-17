@@ -172,9 +172,8 @@
     neovim
     xclip
     nerdfonts
-    make
     gcc
-    make
+    gnumake
     unzip
     ripgrep
 
