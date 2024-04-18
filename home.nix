@@ -72,38 +72,20 @@
     # '')
   ];
 
-  programs.helix = {
+  programs.zsh = {
     enable = true;
-    languages = builtins.fromTOML ''
-      [[language]]
-      name = "nu"
-      file-types = ["nu"]
-      shebangs = ["nu"]
-      comment-token = "#"
-      indent = { tab-width = 2, unit = "  " }
-      language-servers = ["nu-lsp"]
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
-      [[language]]
-      name = "nix"
-      formatter = { command = "alejandra" }
+    history.path = "${config.xdg.dataHome}/zsh/history";
 
-      [language-server.nu-lsp]
-      command = "nu"
-      args = ["--lsp"]
-    '';
-  };
-
-  programs.nushell.environmentVariables = {
-    EDITOR = "hx";
-  };
-
-  programs.nushell = {
-    enable = true;
-    extraEnv = ''
-    $env.NU_LIB_DIRS = [
-      $"($nu.default-config-dir)/modules"
-    ]
-    '';
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "zsh-users/zsh-autosuggestions"
+      ];
+    };
   };
 
   programs.starship = {
@@ -111,20 +93,18 @@
     enableNushellIntegration = true;
   };
 
-  home.file."nu-modules" = {
-    source = ./nushell;
-    recursive = true;
-    target = "${config.xdg.configHome}/nushell/modules/";
-  };
-
-  programs.nushell.extraConfig = "use dvsm.nu";
-
   programs.lazygit = {
     enable = true;
   };
 
   programs.zellij = {
     enable = true;
+  };
+
+  home.file."zellij-config" = {
+    source = ./zellij;
+    recursive = true;
+    target = "${config.xdg.configHome}/zellij";
   };
 
   programs.neovim = {

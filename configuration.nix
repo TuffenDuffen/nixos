@@ -163,10 +163,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    nushell
+    zsh
     pciutils
     git
     git-credential-oauth
+
+    # Nix
+    nh
+    nix-output-monitor
+    nvd
 
     # neovim
     neovim
@@ -193,11 +198,6 @@
     via
   ];
 
-  # Enable nushell
-  environment.shells = [
-    pkgs.nushell
-  ];
-    
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
