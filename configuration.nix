@@ -149,7 +149,7 @@
     isNormalUser = true;
     description = "Tuffen Duffen";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
   };
 
   home-manager = {
@@ -160,10 +160,13 @@
     };
   };
 
+  programs.zsh.enable = true;
+
+  environment.shells = [ pkgs.zsh ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    zsh
     pciutils
     git
     git-credential-oauth
